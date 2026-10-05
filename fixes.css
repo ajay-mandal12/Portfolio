@@ -1,0 +1,345 @@
+/* =====================================================
+   fixes.css  -  load AFTER style.css
+   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="fixes.css">
+   Only touches: footer (mobile layout + Back to top) and contact size.
+   ===================================================== */
+
+
+/* =====================================================
+   1) CONTACT: bigger on desktop + mobile
+   ===================================================== */
+
+/* "Contact me" heading */
+.ct .sh h2 {
+  font-size: clamp(42px, 6vw, 84px);
+}
+.ct .sh .mono {
+  font-size: 13px;
+}
+
+/* green card */
+.cc {
+  padding: clamp(56px, 8vw, 112px) clamp(24px, 5vw, 72px);
+  border-radius: clamp(28px, 4vw, 48px);
+}
+.cc .q {
+  font-size: clamp(16px, 1.5vw, 20px);
+}
+.cc .q:before {
+  width: 10px;
+  height: 10px;
+}
+.cc h2 {
+  font-size: clamp(38px, 6.4vw, 92px);
+  line-height: 1;
+  max-width: 980px;
+  margin: 20px 0 36px;
+}
+
+/* email + "Open in mail" buttons */
+.cc .em {
+  padding: clamp(15px, 1.6vw, 22px) clamp(28px, 3vw, 44px);
+  font-size: clamp(16px, 1.6vw, 21px);
+}
+
+/* mobile / tablet */
+@media (max-width: 900px) {
+  .ct .sh h2 {
+    font-size: clamp(40px, 11vw, 60px);
+  }
+  .cc {
+    padding: 48px 20px;
+  }
+  .cc .q {
+    font-size: 16px;
+  }
+  .cc h2 {
+    font-size: clamp(36px, 10.5vw, 56px);
+    margin: 18px 0 28px;
+  }
+  .ea {
+    max-width: 440px;
+  }
+  .cc .em {
+    padding: 16px 20px;
+    font-size: 17px;
+  }
+}
+
+
+/* =====================================================
+   2) FOOTER: mobile layout + "Back to top" on the right
+   ===================================================== */
+
+/* stop the "stuck hover" shift/colour on touch screens
+   (this is why "Skills" looked indented + green on mobile) */
+@media (hover: none) {
+  .site-footer .ft-col a:hover {
+    transform: none;
+    color: rgba(242, 239, 232, 0.88);
+  }
+  .site-footer .ft-col .ft-social a:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .site-footer .ft-col .ft-social a.gh:hover {
+    background: var(--ac);
+  }
+  .site-footer .ft-col .ft-social a.in:hover {
+    background: #a9c7ff;
+  }
+  .site-footer .totop:hover i {
+    transform: none;
+    background: var(--ac);
+  }
+}
+
+/* tablet + mobile */
+@media (max-width: 900px) {
+  .site-footer .ft-bottom {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .site-footer .totop {
+    margin-left: auto; /* always pushed to the right side */
+  }
+}
+
+/* phones */
+@media (max-width: 480px) {
+  .site-footer .ft-card {
+    padding-top: 36px;
+    padding-bottom: 20px;
+  }
+
+  /* "Currently" full width on top, Navigate + Elsewhere side by side */
+  .site-footer .ft-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 20px;
+    padding-bottom: 28px;
+  }
+  .site-footer .ft-mid {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+  .site-footer .ft-col h4 {
+    margin-bottom: 12px;
+  }
+  .site-footer .ft-col a {
+    font-size: 15px;
+    padding: 4px 0;
+  }
+  .site-footer .ft-mid p {
+    font-size: 15px;
+  }
+
+  /* social buttons: compact, stacked in their column */
+  .site-footer .ft-social {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .site-footer .ft-col .ft-social a {
+    padding: 9px 14px;
+    font-size: 14px;
+    gap: 8px;
+  }
+  .site-footer .ft-social svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* bottom bar: copyright left, Back to top right */
+  .site-footer .ft-bottom {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 16px;
+    font-size: 12.5px;
+  }
+  .site-footer .totop {
+    margin-left: auto;
+    gap: 8px;
+    font-size: 12.5px;
+  }
+  .site-footer .totop i {
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+  }
+}
+
+
+/* =====================================================
+   3) FOOTER: full-width divider line (edge to edge)
+   ===================================================== */
+.site-footer .ft-bottom {
+  position: relative;
+  border-top: 0;
+}
+.site-footer .ft-bottom:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 1px;
+  transform: translateX(-50%);
+  background: rgba(242, 239, 232, 0.2);
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   4) FOOTER: Gmail button
+   ===================================================== */
+.site-footer .ft-social a.gm {
+  background: var(--bg);
+}
+.site-footer .ft-col .ft-social a.gm:hover {
+  background: #ffa98a;
+}
+@media (hover: none) {
+  .site-footer .ft-col .ft-social a.gm:hover {
+    background: var(--bg);
+  }
+}
+
+
+/* =====================================================
+   5) MOBILE MENU: no stuck hover highlight
+   (only the current section stays highlighted,
+    plus a quick flash while you actually tap)
+   ===================================================== */
+@media (max-width: 900px) {
+  header.open nav a:hover {
+    background: transparent;
+  }
+  header.open nav a.on,
+  header.open nav a.on:hover {
+    background: rgba(205, 242, 60, 0.35);
+  }
+  header.open nav a:active {
+    background: rgba(205, 242, 60, 0.35);
+  }
+}
+
+
+/* =====================================================
+   6) MOBILE MENU: lime hover / tap effect (matches design)
+   - hover (mouse)  : soft lime fill + text slides in
+   - tap (touch)    : same effect while pressed, no stuck state
+   - current section: stays lime
+   ===================================================== */
+@media (max-width: 900px) {
+  header.open nav a {
+    transition:
+      background 0.25s,
+      padding-left 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  header.open nav a.on,
+  header.open nav a:active {
+    background: rgba(205, 242, 60, 0.4);
+    padding-left: 24px;
+  }
+}
+
+/* real hover only on devices that have a mouse */
+@media (max-width: 900px) and (hover: hover) {
+  header.open nav a:hover {
+    background: rgba(205, 242, 60, 0.4);
+    border-color: transparent;
+    padding-left: 24px;
+  }
+}
+
+
+/* =====================================================
+   7) HERO: "Open to internships" badge a little bigger
+   ===================================================== */
+.rot {
+  width: 152px;
+  height: 152px;
+  right: -18px;
+  top: -18px;
+}
+@media (max-width: 900px) {
+  .rot {
+    width: 126px;
+    height: 126px;
+    right: -10px;
+    top: -10px;
+  }
+}
+
+
+/* =====================================================
+   8) HERO: portrait photo a little bigger
+   ===================================================== */
+@media (min-width: 901px) {
+  .hg {
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 48px;
+  }
+}
+@media (max-width: 900px) {
+  .ph {
+    max-width: 430px;
+  }
+}
+
+
+/* =====================================================
+   9) WORK: project cards bigger (desktop + mobile)
+   ===================================================== */
+@media (min-width: 901px) {
+  .proj {
+    height: clamp(460px, 66vh, 540px);
+    padding: 32px;
+    gap: 44px;
+    border-radius: 32px;
+  }
+  .proj h3 {
+    font-size: clamp(42px, 4.4vw, 62px);
+    margin: 10px 0 12px;
+  }
+  .proj p {
+    font-size: 17px;
+    max-width: 420px;
+  }
+  .tags span {
+    font-size: 15px;
+    padding: 5px 15px;
+  }
+  .pl {
+    padding: 12px 22px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  #stack .proj {
+    width: min(84vw, 420px);
+    padding: 18px;
+    border-radius: 28px;
+  }
+  #stack .proj h3 {
+    font-size: 36px;
+  }
+  #stack .proj p {
+    font-size: 16px;
+  }
+  .tags span {
+    font-size: 14px;
+    padding: 5px 14px;
+  }
+  .pl {
+    padding: 11px 18px;
+    font-size: 15px;
+  }
+}
